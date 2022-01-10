@@ -29,6 +29,12 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+//dbconfig
+const connect = mongoose.connect('mongodb://localhost/billeterie', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connexion à MongoDB réussie !'))
+    .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+
 app.get('/', (req, res, next) => {
     res.send('teste valide');
 });
