@@ -1,65 +1,48 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
-const app = require('../app');
 const http = require('http');
+const app = require('./app');
 
-/**
- * Get port from environment and store in Express.
- */
 
-const port = normalizePort(process.env.PORT || '8000');
+const normalizePort = val => {
+    const port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port;
+    }
+    return false;
+};
+const port = normalizePort(process.env.PORT ||  '8000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+const errorHandler = error => {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+    const address = server.address();
+    const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges.');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use.');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+};
 
 const server = http.createServer(app);
 
-/**
- * Create Socket
- */
-const socketIO = require('socket.io');
-const io = socketIO(server);
-
-io.on('connection', (socket) => {
-    console.log('user connected');
-    io.emit('new-message', 'yooooooo');
+server.on('error', errorHandler);
+server.on('listening', () => {
+    const address = server.address();
+    const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
+    console.log('Listening on ' + bind + '\nhttp://localhost:8000/ ');
 });
 
-io.on('new-message', (message) => {
-    console.log('new message ', message);
-    io.emit(message);
-});
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port, () => {
-    console.log('server started ', port);
-});
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-    let port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-
-    return false;
-}
+server.listen(port);
