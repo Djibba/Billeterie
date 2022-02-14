@@ -1,11 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const logger = require('morgan');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 const app = express();
 
 app.use(express.static('public'));
+app.use(logger('dev'));
+var accessLogStream = fs.createWriteStream(__dirname + process.env.LOG_PATH + 'backoffice.log', { flags: 'a' })
+app.use(logger('combined', { "stream": accessLogStream }));
 app.set('views', __dirname + '/views'); // general config
 app.set('view engine', 'ejs');
 
