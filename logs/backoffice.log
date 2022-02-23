@@ -3,3 +3,6 @@
 ::1 - - [22/Feb/2022:23:25:19 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
 ::1 - - [22/Feb/2022:23:26:30 +0000] "GET /api/v1/ticket HTTP/1.1" 200 25 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
 ::1 - - [22/Feb/2022:23:28:15 +0000] "GET /api/all HTTP/1.1" 200 25 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+::1 - - [23/Feb/2022:19:06:51 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+::1 - - [23/Feb/2022:19:07:30 +0000] "GET /api/billets HTTP/1.1" 200 25 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+::1 - - [23/Feb/2022:19:07:30 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:4000/api/billets" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
