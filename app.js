@@ -1,9 +1,10 @@
+require('dotenv').config();
 require('./db/connect');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const logger = require('morgan');
-const mongoose = require('mongoose');
 const fs = require('fs');
 const billet = require('./routes/billetRoute')
 
